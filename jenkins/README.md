@@ -16,21 +16,21 @@
 
 # 1. Introduction to SDCL, CICD and GitOps | Continuous Delivery vs Deployment | Various CI Tools
 
-![alt text](images/image-1.png)
+![alt text](images-1/image-1.png)
 
 ## 1.1 SW Build Process
 
-![alt text](images/image-2.png)
-![alt text](images/image-3.png)
-![alt text](images/image-4.png)
+![alt text](images-1/image-2.png)
+![alt text](images-1/image-3.png)
+![alt text](images-1/image-4.png)
 
 - Rely on dependencies
 
-![alt text](images/image-5.png)
+![alt text](images-1/image-5.png)
 
 ### 1.1.1 Build Automation
 
-![alt text](images/image-6.png)
+![alt text](images-1/image-6.png)
 
 - Shell scripy /automation. But it not standard way.
 - Build tool help like MAVEN. Can generate project.
@@ -38,23 +38,23 @@
 
 ### 1.1.2 Fail Fast
 
-![alt text](images/image-7.png)
+![alt text](images-1/image-7.png)
 
 - Fail fast get feedback fast.
 
 ## 2.1 Phase in CI/CD
 
-![alt text](images/image-8.png)
+![alt text](images-1/image-8.png)
 
 - Common stage. Build -> test -> deploy
 
 **CI/CD**
-![alt text](images/image-9.png)
+![alt text](images-1/image-9.png)
 
 - If we make merge evey week it will be more good ?
 
 **Continuous Integration**
-![alt text](images/image-10.png)
+![alt text](images-1/image-10.png)
 
 - Integrate chnage back to main branch.
   - When integrate to main branch the build. When finish it will be merge to main branch.
@@ -62,9 +62,9 @@
 - main : branch of truth.
   - have to mr/pr to this main branch.
 
-![alt text](images/image-11.png)
-![alt text](images/image-12.png)
-![alt text](images/image-13.png)
+![alt text](images-1/image-11.png)
+![alt text](images-1/image-12.png)
+![alt text](images-1/image-13.png)
 
 - Webhook
   - 2 applciation talk asynchronously
@@ -79,41 +79,41 @@
 
 **Continuous Testing**
 
-![alt text](images/image-14.png)
+![alt text](images-1/image-14.png)
 
 - Security scan
   - Dependencies
 
-![alt text](images/image-15.png)
+![alt text](images-1/image-15.png)
 
 **Continuous Delivery**
 
-![alt text](images/image-16.png)
+![alt text](images-1/image-16.png)
 
 **Continuous Deployment**
 
-![alt text](images/image-17.png)
+![alt text](images-1/image-17.png)
 
 **Continuous Delivery vs Deployment**
 
-![alt text](images/image-18.png)
+![alt text](images-1/image-18.png)
 
 - Continuous Delivery : Manual deploy
 - Continuous Deployment : Automate deploy
 
-![alt text](images/image-19.png)
+![alt text](images-1/image-19.png)
 
 **CI/CD Tool**
 
-![alt text](images/image-20.png)
+![alt text](images-1/image-20.png)
 
 **How does CICD relate to DevOps**
 
-![alt text](images/image-21.png)
+![alt text](images-1/image-21.png)
 
 **What is GitOps**
 
-![alt text](images/image-22.png)
+![alt text](images-1/image-22.png)
 
 - 2 repo
   1. Code
@@ -121,7 +121,7 @@
 
 **Argocd**
 
-![alt text](images/image-23.png)
+![alt text](images-1/image-23.png)
 
 - GitOps operator
   - Check the config repo does it any change.
@@ -181,3 +181,85 @@
         - Pod as a agent.
         - Which are temporary.
         - JNLP : extra container that will be automatically injected by your master controller.![alt text](images-2/image-9.png)
+
+![alt text](images-2/image -10.png)
+
+**Master Node**
+![alt text](images-2/image-11.png)
+
+- Disabled runjob on master node.
+
+**Slave Node**
+![alt text](images-2/image-12.png)
+
+**Comunication Master-slave**
+![alt text](images-2/image-13.png)
+
+- Communication way
+  - Static slave
+    1. JNLP protocol
+    2. SSH
+  - Dynamic slave
+    1. JNLP
+    2. Cloud API
+
+# 3. Run Jenkins as Docker Container
+
+![alt text](images-3/image-1.png)
+
+- War file -> Tomcat
+- Documentation : https://www.jenkins.io/doc/book/installing/
+- Docker : https://hub.docker.com/r/jenkins/jenkins
+
+**Running Jenkins as Docker Container**
+![alt text](images-3/image-2.png)
+
+- Code
+  ```
+  docker run -d --restart=always -p 8080:8080 -p 50000:50000 \
+  -v ~/jenkins_home:/var/jenkins_home --name jenkins jenkins/jenkins:lts-jdk17
+  ```
+
+# 5. Jenkins Dashboard Overview| Manage Jenkins Options
+
+## 5.1 Jenkins Jobs
+
+![alt text](images-5/image-1.png)
+![alt text](images-5/image-2.png)
+
+- 2 Type
+  1. Freeestyle jobs
+  2. pipeline jobs
+
+![alt text](images-5/image-3.png)
+
+- Will occur maven type job only when installed maven plugin NOT a maven on machine.
+
+**Free Style Jobs**
+![alt text](images-5/image-4.png)
+
+- Use only with Ad-Hoc task.
+- Disadvantage is about the version control of command.
+
+**Demo**
+
+- Manage Jenkins
+  - System
+    - HTTP proxy
+  - Tools : Configuration for each plugin. If it require.
+    - Sonarscan : like have to configuration. Like Server URL.
+    - Maven :
+      - Different maven version management.
+        ![alt text](images-5/image-5.png)
+  - Plugins
+    - Advanced setting
+      - Choose file and deploy downloaded plugin.
+    - Proxy server
+      ![alt text](images-5/image-6.png)
+      - Need to whitelist that url plugin.
+  - Cloud
+- URL
+  - saferestart
+    - {URL}:8080/safeRestart
+  - Env variable
+    - {URL}:8080/env-vars.html
